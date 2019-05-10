@@ -6,8 +6,8 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,17 +17,35 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+// export default class App extends Component<Props> {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.welcome}>Welcome to React Native!</Text>
+//         <Text style={styles.instructions}>To get started, edit App.js</Text>
+//         <Text style={styles.instructions}>{instructions}</Text>
+//       </View>
+//     );
+//   }
+// }
+
+const App = () => {
+  const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    setCount(count + 1);
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome} onPress={() => setCount(count + 1)}>Welcome to React Native!!!!!!!</Text>
+      <Text style={styles.instructions}>To get started, edit App.js</Text>
+      <Text style={styles.instructions}>{count}</Text>
+    </View>
+  );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
